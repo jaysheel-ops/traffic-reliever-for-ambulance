@@ -1,1 +1,1 @@
-# <p style="text-align:center;"> ambulance-traffic-reliever<p>
+# <p align="center"> ambulance-traffic-reliever<p>

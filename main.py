@@ -2,15 +2,15 @@ import tkinter as tk
 import random
 
 class TrafficMap:
-    def __init__(self, canvas, width, height):
+    def __init__(self, canvas, width, height, traffic_points):
         self.canvas = canvas
         self.width = width
         self.height = height
         self.cell_size = 16  # Reduced cell size by 20%
         self.map = [[' ' for _ in range(width)] for _ in range(height)]
         self.rectangles = [[None for _ in range(width)] for _ in range(height)]
-        self.road_rows = [0, 5, 15]  # Rows containing traffic lights (roads)
-        self.road_cols = [0, 5, 15]  # Columns containing traffic lights (roads)
+        self.road_rows = [0] + [i[1] for i in traffic_points] # Rows containing traffic lights (roads)
+        self.road_cols = [0] + [i[0] for i in traffic_points]  # Columns containing traffic lights (roads)
     
     def display(self):
         for y, row in enumerate(self.map):
@@ -41,8 +41,8 @@ class Ambulance:
     def __init__(self, x, y):
         self.x = x
         self.y = y
-        self.destination_x = random.randint(0, traffic_map.width - 1)
-        self.destination_y = random.randint(0, traffic_map.height - 1)
+        self.destination_x = 7
+        self.destination_y = 11
     
     def move(self, direction):
         if direction == 'right' and self.x < traffic_map.width - 1:
@@ -59,7 +59,9 @@ def update_traffic_lights(ambulance):
     for y in range(traffic_map.height):
         for x in range(traffic_map.width):
             if traffic_map.map[y][x] == 'T':
-                if (abs(ambulance.x - x) <= 1) and (abs(ambulance.y - y) <= 1):
+                if ambulance.x == x and abs(ambulance.y - y) <= 2:
+                    traffic_map.map[y][x] = 'G'
+                elif ambulance.y == y and abs(ambulance.x - x) <= 2:
                     traffic_map.map[y][x] = 'G'
                 else:
                     traffic_map.map[y][x] = 'T'
@@ -80,6 +82,7 @@ def key_pressed(event):
         direction = 'left'
     elif event.keysym == 'Right':
         direction = 'right'
+    traffic_map.map[ambulance.y][ambulance.x] = 'S'
     ambulance.move(direction)
     update_traffic_lights(ambulance)
     traffic_map.map[ambulance.y][ambulance.x] = 'A'
@@ -97,14 +100,15 @@ canvas_height = 480  # Canvas height
 canvas = tk.Canvas(root, width=canvas_width, height=canvas_height, bg='black')  # Set canvas background to black
 canvas.pack()
 
+# Creating traffic points
+traffic_points = [(5, 5), (15, 15), (10, 7), (3, 12)]  # Example traffic points
+
 # Initialize the traffic map and ambulance
 width = 30  # Number of cells in width
 height = 30  # Number of cells in height
-traffic_map = TrafficMap(canvas, width, height)
+traffic_map = TrafficMap(canvas, width, height, traffic_points)
 ambulance = Ambulance(0, 0)
 
-# Creating traffic points
-traffic_points = [(5, 5), (15, 15), (10, 7), (3, 12)]  # Example traffic points
 for point in traffic_points:
     traffic_map.map[point[1]][point[0]] = 'T'
 

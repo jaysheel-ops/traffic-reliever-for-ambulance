@@ -1,5 +1,4 @@
 import tkinter as tk
-import random
 
 class TrafficMap:
     def __init__(self, canvas, width, height, traffic_points):
@@ -59,9 +58,13 @@ def update_traffic_lights(ambulance):
     for y in range(traffic_map.height):
         for x in range(traffic_map.width):
             if traffic_map.map[y][x] == 'T':
-                if ambulance.x == x and abs(ambulance.y - y) <= 2:
+                if direction == 'down' and ambulance.x == x and ambulance.y - y == -1:
                     traffic_map.map[y][x] = 'G'
-                elif ambulance.y == y and abs(ambulance.x - x) <= 2:
+                elif direction == 'up' and ambulance.x == x and ambulance.y - y == 1:
+                    traffic_map.map[y][x] = 'G'
+                elif direction == 'right' and ambulance.y == y and ambulance.x - x == -1:
+                    traffic_map.map[y][x] = 'G'
+                elif direction == 'left' and ambulance.y == y and ambulance.x - x <= 1:
                     traffic_map.map[y][x] = 'G'
                 else:
                     traffic_map.map[y][x] = 'T'
@@ -71,9 +74,13 @@ def check_game_status(ambulance):
     if abs(ambulance.x - ambulance.destination_x) <= 1 and abs(ambulance.y - ambulance.destination_y) <= 1:
         print("Ambulance has reached the destination!")
         root.quit()
+    
+direction = '' 
 
 def key_pressed(event):
-    direction = ''
+    
+    global direction
+    
     if event.keysym == 'Up':
         direction = 'up'
     elif event.keysym == 'Down':

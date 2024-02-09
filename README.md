@@ -15,9 +15,8 @@ https://github.com/jaysheel-ops/ambulance-traffic-reliever/assets/73154873/d7ffe
 ## Remaining Tasks
 
 ### Features to Implement
-- [ ] Demo Video 
-- [ ] Direction of ambulance + distance from traffic signal = Green Light 
-- [ ] Implement a reset
+- [x] Demo Video 
+- [x] Direction of ambulance + distance from traffic signal = Green Light 
 
 ### Bug Fix
 - [ ] Ambulance shouldn't go on black line
@@ -29,4 +28,4 @@ https://github.com/jaysheel-ops/ambulance-traffic-reliever/assets/73154873/d7ffe
 ### Optional 
 
 - [ ] RNN if wanted
-
+- [ ] Implement a reset

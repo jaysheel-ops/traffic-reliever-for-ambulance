@@ -19,7 +19,7 @@ https://github.com/jaysheel-ops/ambulance-traffic-reliever/assets/73154873/d7ffe
 - [x] Direction of ambulance + distance from traffic signal = Green Light 
 
 ### Bug Fix
-- [ ] Ambulance shouldn't go on black line
+- [X] Ambulance shouldn't go on black line
 
 ### Automation
 - [ ] Automate the script 

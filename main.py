@@ -78,24 +78,39 @@ def check_game_status(ambulance):
 direction = '' 
 
 def key_pressed(event):
-    
     global direction
-    
+
+    next_x, next_y = ambulance.x, ambulance.y
+
+    # Calculate the coordinates of the next cell based on the direction
     if event.keysym == 'Up':
-        direction = 'up'
+        direction = "up"
+        next_y -= 1
     elif event.keysym == 'Down':
-        direction = 'down'
+        direction = "down"
+        next_y += 1
     elif event.keysym == 'Left':
-        direction = 'left'
+        direction = "left"
+        next_x -= 1
     elif event.keysym == 'Right':
-        direction = 'right'
-    traffic_map.map[ambulance.y][ambulance.x] = 'S'
-    ambulance.move(direction)
-    update_traffic_lights(ambulance)
-    traffic_map.map[ambulance.y][ambulance.x] = 'A'
-    traffic_map.clear()
-    traffic_map.display()
-    check_game_status(ambulance)
+        direction = "right"
+        next_x += 1
+
+    # Check if the next cell is within the canvas boundaries
+    if 0 <= next_x < traffic_map.width and 0 <= next_y < traffic_map.height:
+        # Check the color of the next cell
+        next_cell_color = canvas.itemcget(traffic_map.rectangles[next_y][next_x], 'fill')
+
+        # If the next cell color is not black, move the ambulance
+        if next_cell_color != 'black':
+            traffic_map.map[ambulance.y][ambulance.x] = 'S'
+            ambulance.move(direction)
+            update_traffic_lights(ambulance)
+            traffic_map.map[ambulance.y][ambulance.x] = 'A'
+            traffic_map.clear()
+            traffic_map.display()
+            check_game_status(ambulance)
+
 
 # Create the Tkinter window
 root = tk.Tk()

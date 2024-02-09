@@ -101,7 +101,7 @@ canvas = tk.Canvas(root, width=canvas_width, height=canvas_height, bg='black')  
 canvas.pack()
 
 # Creating traffic points
-traffic_points = [(5, 5), (15, 15), (10, 7), (3, 12)]  # Example traffic points
+traffic_points = [(7, 5), (15, 15), (10, 7), (3, 12)]  # Example traffic points
 
 # Initialize the traffic map and ambulance
 width = 30  # Number of cells in width

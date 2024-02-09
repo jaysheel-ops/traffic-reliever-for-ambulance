@@ -21,11 +21,8 @@ https://github.com/jaysheel-ops/ambulance-traffic-reliever/assets/73154873/d7ffe
 ### Bug Fix
 - [X] Ambulance shouldn't go on black line
 
-### Automation
+### Optional (Open to )
+
+<!-- - [ ] RNN if wanted
 - [ ] Automate the script 
-- [ ] Conduct usability testing with real users to gather feedback
-
-### Optional 
-
-- [ ] RNN if wanted
-- [ ] Implement a reset
+- [ ] Implement a reset -->

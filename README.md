@@ -10,10 +10,7 @@ The project utilizes a simulation environment where an ambulance is represented 
 
 ## Demo Video
 
-<video width="640" height="360" controls>
-  <source src="demo_video.mp4" type="video/x-matroska">
-  Your browser does not support the video tag.
-</video>
+https://github.com/jaysheel-ops/ambulance-traffic-reliever/assets/73154873/d7ffe972-3820-486b-9ec4-b0a9f80b2d8c
 
 ## Remaining Tasks
 
